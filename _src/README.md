@@ -9,6 +9,7 @@ This repository is the **studio website**, https://tomatotomatogames.com. It's b
 | Domain + website | `tomatotomatogames.com`, DNS at Squarespace → GitHub Pages | One page per game at `/<slug>/` |
 | Support email | `support@tomatotomatogames.com` (Google Workspace alias) | Use it in every game and every store listing |
 | Privacy policy | `https://tomatotomatogames.com/privacy-policy.html` | **One policy for all games.** It lists every game automatically. Use this URL in each game's Play Console and in its in-game Settings link. |
+| Terms of service | `https://tomatotomatogames.com/terms.html` | **One set of terms for all games** (virtual items have no cash value, purchases via Google Play, ads, fair play, Israeli law). Link it in each game's Settings and on the Google Cloud consent screen. |
 | app-ads.txt | `https://tomatotomatogames.com/app-ads.txt` | One line per AdMob publisher ID. It covers **all** apps in that AdMob account. Nothing to do per game. |
 | Play Console developer account | Tomato Games | All games live in it. Its "website" is this domain. |
 | AdMob account | publisher `pub-2119263671751122` | Add each new app inside the same account |
@@ -25,6 +26,7 @@ This repository is the **studio website**, https://tomatotomatogames.com. It's b
 **Play Console:** create the app, then:
 - Store settings: website `https://tomatotomatogames.com`, email `support@tomatotomatogames.com`
 - App content → Privacy policy: `https://tomatotomatogames.com/privacy-policy.html`
+- (Terms aren't a Play Console field: they go in the game's Settings, `Config.TermsUrl`, and the consent screen's optional terms link.)
 - New personal accounts: a closed test with 12 testers for 14 days, per app. With an organization account (D-U-N-S) this step is skipped.
 
 **AdMob:** add the app to the existing account and create its ad units. No app-ads.txt work is needed.

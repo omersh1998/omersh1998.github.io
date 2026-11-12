@@ -5,6 +5,7 @@
 One site for every game the studio publishes:
   /                      studio home, a card per game
   /<slug>/               a page per game (banner, icon, screenshots, features, Play link once live)
+  /terms.html            ONE studio-wide terms of service (virtual items, purchases, ads, fair play, Israeli law)
   /privacy-policy.html   ONE studio-wide privacy policy covering all games (each game's Play listing and in-game
                          Settings link point here)
   /app-ads.txt           ONE file for the AdMob account: it authorises ads for every app of the publisher
@@ -80,6 +81,7 @@ def page(title, desc, body, s, icon="/favicon.png"):
 {body}
   <footer>
     <a href="/privacy-policy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
     <span>Support: <a href="mailto:{e(s['support_email'])}">{e(s['support_email'])}</a></span>
     <span>© 2026 {e(s['studio'])}</span>
   </footer>
@@ -237,6 +239,83 @@ def privacy(s):
     return page(f"Privacy Policy · {s['studio']}", f"Privacy policy for all {s['studio']} games.", body, s)
 
 
+def terms(s):
+    names = ", ".join(f'<a href="/{g["slug"]}/">{e(g["name"])}</a>' for g in s["games"])
+    st, mail = e(s["studio"]), e(s["support_email"])
+    body = f"""  <article class="policy">
+  <h1>Terms of Service</h1>
+  <p class="muted">{st} &middot; Last updated: {e(s.get('terms_updated', s['policy_updated']))}</p>
+
+  <p>These terms apply to all mobile games published by <strong>{st}</strong> ("we", "us") on Google Play (each a
+  "Game"), currently: {names}. By downloading or playing a Game you agree to these terms. If you do not agree, please do
+  not use the Game. Our <a href="/privacy-policy.html">Privacy Policy</a> explains how information is handled.</p>
+
+  <h2>1. Your licence</h2>
+  <p>We give you a personal, non-exclusive, non-transferable, revocable licence to download and play the Games on your
+  own devices for your own non-commercial entertainment. The Games, including their code, art, music, characters and
+  names, belong to {st} or its licensors. You may not copy, modify, sell, rent, reverse engineer or redistribute a Game,
+  except where the law expressly allows it.</p>
+
+  <h2>2. Virtual items and currency</h2>
+  <p>The Games contain virtual items such as coins, gems, boosts, passes and upgrades ("Virtual Items"), some of which can
+  be bought with real money. Virtual Items are licensed to you, not sold; they have <strong>no real-world monetary
+  value</strong>, cannot be exchanged for money or anything of value outside the Game, and cannot be transferred or sold
+  to anyone else. We may change, rebalance or remove Virtual Items (for example in an update), and time-limited items such
+  as passes expire as described in the Game.</p>
+
+  <h2>3. Purchases and refunds</h2>
+  <p>All purchases are made through Google Play and are subject to Google Play's terms and its refund policy. Purchases
+  are final once the Virtual Item is delivered, except where Google Play's policy or applicable law gives you a right to
+  a refund. If a purchase was charged but not delivered, contact us and we will help, or request a refund from Google
+  Play. Purchases that remove ads remove the Game's ad breaks; rewards that are normally earned by watching an ad are then
+  given without one. Your purchases can be restored on the same Google account with the Game's "Restore purchases"
+  option.</p>
+
+  <h2>4. Ads</h2>
+  <p>Free versions of the Games show ads, including short ad breaks between rounds and optional ads you can choose to
+  watch for a reward. Ads are provided by third parties; we are not responsible for the content of third-party ads or
+  the sites they link to.</p>
+
+  <h2>5. Fair play</h2>
+  <p>Please do not cheat. You agree not to use hacks, modified versions, bots, exploits of bugs, or any other unauthorised
+  means to gain an advantage, obtain Virtual Items or interfere with a Game. We may remove Virtual Items or progress
+  obtained this way, and may suspend access to features for anyone who breaks these terms.</p>
+
+  <h2>6. Progress, updates and availability</h2>
+  <p>Progress is stored on your device, and in your Google account if you use cloud save. Uninstalling a Game without
+  cloud save deletes local progress, and we cannot recover it. We may update a Game at any time, which may change
+  features or gameplay, and some updates may be required to keep playing. We may stop offering or supporting a Game; if a
+  Game is discontinued, Virtual Items in it may stop being usable, subject to applicable law.</p>
+
+  <h2>7. Disclaimers</h2>
+  <p>The Games are provided "as is" and "as available". To the fullest extent permitted by law, we make no warranties
+  of any kind, including that a Game will be uninterrupted, error-free or compatible with every device.</p>
+
+  <h2>8. Limitation of liability</h2>
+  <p>To the fullest extent permitted by law, {st} is not liable for any indirect, incidental, special or consequential
+  damages, or for loss of data or progress, arising from your use of the Games. Our total liability for any claim
+  relating to the Games is limited to the amount you paid us for the Game or Virtual Items in the 12 months before the
+  claim. Nothing in these terms limits rights you have as a consumer that cannot be limited by contract.</p>
+
+  <h2>9. Third-party services</h2>
+  <p>The Games use services provided by third parties, such as Google Play, Google Play Games, AdMob and Firebase. Your
+  use of those services is also subject to their own terms.</p>
+
+  <h2>10. Changes to these terms</h2>
+  <p>We may update these terms. The date at the top shows the latest version. If you keep playing after an update, the
+  new terms apply; important changes will be announced in the Games or on their store pages.</p>
+
+  <h2>11. Governing law</h2>
+  <p>These terms are governed by the laws of the State of Israel, without regard to its conflict-of-laws rules, unless
+  the mandatory consumer laws of your country of residence say otherwise.</p>
+
+  <h2>12. Contact</h2>
+  <p>{st}, {e(s['country'])}<br>Email: <a href="mailto:{mail}">{mail}</a></p>
+  </article>
+"""
+    return page(f"Terms of Service · {s['studio']}", f"Terms of service for all {s['studio']} games.", body, s)
+
+
 def write(rel, text):
     path = os.path.join(OUT, rel)
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -249,6 +328,7 @@ def main():
         s = json.load(f)
     write("index.html", home(s))
     write("privacy-policy.html", privacy(s))
+    write("terms.html", terms(s))
     write("app-ads.txt", "".join(f"google.com, {p}, DIRECT, f08c47fec0942fa0\n" for p in s["admob_publisher_ids"]))
     write("CNAME", s["domain"] + "\n")
     for g in s["games"]:
@@ -264,7 +344,7 @@ def main():
             shutil.copytree(shots, os.path.join(dst, "shots"))
     # The studio favicon: the first game's icon until the studio has its own logo.
     shutil.copy2(os.path.join(SRC, "games", s["games"][0]["slug"], "icon.png"), os.path.join(OUT, "favicon.png"))
-    print("built:", ", ".join(["/", "/privacy-policy.html", "/app-ads.txt"] + [f"/{g['slug']}/" for g in s["games"]]))
+    print("built:", ", ".join(["/", "/privacy-policy.html", "/terms.html", "/app-ads.txt"] + [f"/{g['slug']}/" for g in s["games"]]))
 
 
 if __name__ == "__main__":
