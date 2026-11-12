@@ -1,0 +1,35 @@
+{
+  "studio": "Tomato Games",
+  "country": "Israel",
+  "domain": "tomatotomatogames.com",
+  "support_email": "support@tomatotomatogames.com",
+  "tagline": "Quick, colourful mobile games you can play with one hand.",
+  "admob_publisher_ids": ["pub-2119263671751122"],
+  "policy_updated": "12 November 2026",
+
+  "games": [
+    {
+      "slug": "evolution-race",
+      "name": "Evolution Race",
+      "package": "evolution.race.game",
+      "status": "testing",
+      "short": "Evolve from one cell to a whole army.",
+      "description": "Start as a single cell and evolve your crowd into an unstoppable army. Shoot the tubes, grab the DNA, beat the boss and race through 7 worlds, from the Primordial Pond to Neon City.",
+      "features": [
+        ["🧬 Evolve your army", "Cell, amoeba, fish, bird, mammal, human, cyborg and more."],
+        ["🌍 7 worlds", "From the Primordial Pond to Neon City, each with its own boss."],
+        ["⚡ Quick runs", "About a minute per run, made for one-handed play."],
+        ["📶 Plays offline", "Your progress also saves to Google Play Games."]
+      ],
+      "screenshots": [
+        "Evolve from a single cell",
+        "Shoot the tubes: +3 creatures each",
+        "Shoot the DNA: everyone evolves",
+        "Beat the section boss",
+        "7 worlds, from the pond to Neon City",
+        "Grab the loot: coins, gems and genes",
+        "Upgrade and evolve"
+      ]
+    }
+  ]
+}

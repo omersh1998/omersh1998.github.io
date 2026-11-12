@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evolution Race · Tomato Games</title>
+<meta name="description" content="Evolve from one cell to a whole army.">
+<link rel="icon" href="/evolution-race/icon.png">
+<style>
+  :root { --bg: #fff8f2; --card: #ffffff; --ink: #24161a; --muted: #6f5f63; --line: #f0dfd5; --accent: #e8462f; --accent-ink: #fff; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #1a1214; --card: #251a1d; --ink: #f6ece8; --muted: #b9a8ab; --line: #3a2a2e; --accent: #ff6a52; --accent-ink: #1a1214; }
+  }
+  :root[data-theme="dark"] { --bg: #1a1214; --card: #251a1d; --ink: #f6ece8; --muted: #b9a8ab; --line: #3a2a2e; --accent: #ff6a52; --accent-ink: #1a1214; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 40px 16px 56px; }
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; }
+  header a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 12px; }
+  .logo { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; font-size: 22px; }
+  header b { font-size: 20px; }
+  .lead { color: var(--muted); margin: -10px 0 26px; }
+  .game { background: var(--card); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; margin-bottom: 18px; }
+  .game > a { color: inherit; text-decoration: none; display: block; }
+  .game img.banner { width: 100%; display: block; }
+  .body { padding: 22px 24px 26px; display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+  .body img.icon { width: 96px; height: 96px; border-radius: 22px; flex: none; }
+  .body div { flex: 1 1 280px; }
+  h1 { margin: 0 0 4px; font-size: 28px; }
+  h1.small { font-size: 24px; }
+  .tag { color: var(--muted); margin: 0 0 12px; }
+  .badge { display: inline-block; background: var(--accent); color: var(--accent-ink); font-weight: 700; border-radius: 999px;
+           padding: 7px 16px; font-size: 15px; text-decoration: none; }
+  h2 { font-size: 21px; margin: 34px 0 14px; }
+  .shots { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 30%); gap: 12px; overflow-x: auto;
+           scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .shots img { width: 100%; border-radius: 16px; border: 1px solid var(--line); scroll-snap-align: start; display: block; }
+  @media (min-width: 760px) { .shots { grid-auto-columns: calc((100% - 36px) / 4); } }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 0; list-style: none; margin: 0; }
+  .features li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+  .features b { display: block; }
+  .features span { color: var(--muted); font-size: 15px; }
+  footer { margin-top: 36px; color: var(--muted); font-size: 15px; display: flex; gap: 18px; flex-wrap: wrap; }
+  a { color: var(--accent); }
+  .policy h2 { font-size: 19px; margin: 26px 0 8px; }
+  .policy p, .policy li { overflow-wrap: anywhere; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header><a href="/"><span class="logo" aria-hidden="true">🍅</span><b>Tomato Games</b></a></header>
+  <section class="game">
+    <img class="banner" src="/evolution-race/banner.png" alt="Evolution Race">
+    <div class="body">
+      <img class="icon" src="/evolution-race/icon.png" alt="Evolution Race app icon">
+      <div>
+        <h1>Evolution Race</h1>
+        <p class="tag">Start as a single cell and evolve your crowd into an unstoppable army. Shoot the tubes, grab the DNA, beat the boss and race through 7 worlds, from the Primordial Pond to Neon City.</p>
+        <span class="badge">Coming soon to Google Play</span>
+      </div>
+    </div>
+  </section>
+
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <img src="/evolution-race/shots/1.jpg" alt="Evolve from a single cell" loading="lazy">
+    <img src="/evolution-race/shots/2.jpg" alt="Shoot the tubes: +3 creatures each" loading="lazy">
+    <img src="/evolution-race/shots/3.jpg" alt="Shoot the DNA: everyone evolves" loading="lazy">
+    <img src="/evolution-race/shots/4.jpg" alt="Beat the section boss" loading="lazy">
+    <img src="/evolution-race/shots/5.jpg" alt="7 worlds, from the pond to Neon City" loading="lazy">
+    <img src="/evolution-race/shots/6.jpg" alt="Grab the loot: coins, gems and genes" loading="lazy">
+    <img src="/evolution-race/shots/7.jpg" alt="Upgrade and evolve" loading="lazy">
+  </div>
+
+  <h2>Features</h2>
+  <ul class="features">
+    <li><b>🧬 Evolve your army</b><span>Cell, amoeba, fish, bird, mammal, human, cyborg and more.</span></li>
+    <li><b>🌍 7 worlds</b><span>From the Primordial Pond to Neon City, each with its own boss.</span></li>
+    <li><b>⚡ Quick runs</b><span>About a minute per run, made for one-handed play.</span></li>
+    <li><b>📶 Plays offline</b><span>Your progress also saves to Google Play Games.</span></li>
+  </ul>
+
+  <footer>
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    <span>Support: <a href="mailto:support@tomatotomatogames.com">support@tomatotomatogames.com</a></span>
+    <span>© 2026 Tomato Games</span>
+  </footer>
+</main>
+</body>
+</html>
