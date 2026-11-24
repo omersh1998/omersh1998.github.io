@@ -371,8 +371,9 @@ def main():
         if os.path.isdir(shots):
             shutil.rmtree(os.path.join(dst, "shots"), ignore_errors=True)
             shutil.copytree(shots, os.path.join(dst, "shots"))
-    # The studio favicon: the first game's icon until the studio has its own logo.
-    shutil.copy2(os.path.join(SRC, "games", s["games"][0]["slug"], "icon.png"), os.path.join(OUT, "favicon.png"))
+    # The studio favicon: a game's icon ("favicon_game", else the first game) until the studio has its own logo.
+    fav = s.get("favicon_game", s["games"][0]["slug"])
+    shutil.copy2(os.path.join(SRC, "games", fav, "icon.png"), os.path.join(OUT, "favicon.png"))
     print("built:", ", ".join(["/", "/privacy-policy.html", "/terms.html", "/app-ads.txt"] + [f"/{g['slug']}/" for g in s["games"]]))
 
 
