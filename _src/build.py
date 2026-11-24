@@ -50,6 +50,8 @@ CSS = """
            scroll-snap-type: x mandatory; padding-bottom: 8px; }
   .shots img { width: 100%; border-radius: 16px; border: 1px solid var(--line); scroll-snap-align: start; display: block; }
   @media (min-width: 760px) { .shots { grid-auto-columns: calc((100% - 36px) / 4); } }
+  .shots.wide { grid-auto-columns: minmax(260px, 85%); }
+  @media (min-width: 760px) { .shots.wide { grid-auto-columns: calc((100% - 12px) / 2); } }
   .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 0; list-style: none; margin: 0; }
   .features li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
   .features b { display: block; }
@@ -133,7 +135,7 @@ def game_page(s, g):
   </section>
 """ + (f"""
   <h2>Screenshots</h2>
-  <div class="shots">
+  <div class="shots{' wide' if g.get('shots_wide') else ''}">
 {shots}
   </div>
 """ if shots else "") + (f"""
@@ -141,28 +143,51 @@ def game_page(s, g):
   <ul class="features">
 {feats}
   </ul>
-""" if feats else "")
+""" if feats else "") + (f"""
+  <p class="muted">{e(g['credit'])}</p>
+""" if g.get("credit") else "")
     return page(f"{g['name']} · {s['studio']}", g["short"], body, s, icon=f"/{slug}/icon.png")
+
+
+def online_names(s):
+    """Games with "online": true keep accounts on the studio's own game server."""
+    return ", ".join(f'<a href="/{g["slug"]}/">{e(g["name"])}</a>' for g in s["games"] if g.get("online"))
 
 
 def privacy(s):
     names = ", ".join(f'<a href="/{g["slug"]}/">{e(g["name"])}</a>' for g in s["games"])
     st, mail = e(s["studio"]), e(s["support_email"])
+    online = online_names(s)
+    no_account = ("The Games do not ask you to create an account and we do not ask for your name, email or phone number."
+                  if not online else
+                  f"Except for our online games ({online}), the Games do not ask you to create an account. We never ask "
+                  "for your name, email or phone number.")
+    local_note = "" if not online else " In online games, progress is saved on our game server instead (section 2)."
+    collected = ("<p>We do not run our own servers and do not collect personal information ourselves. The third-party "
+                 "services below, which the Games use, may collect information as described in their own policies.</p>"
+                 if not online else
+                 f"""<p>Our online games ({online}) use our own game server, hosted on Google Cloud. When you play one, the
+  server stores the nickname you choose, your game progress (level, currencies, cards, deck, campaign progress and
+  achievements) and your arena results. Your nickname, level, trophies and deck are shown to other players in rankings and
+  battles. The server keeps short technical logs of requests (nickname and the action), and your IP address is used to
+  connect you to it. We keep this data while the game is offered. To delete your account, email us your nickname.</p>
+  <p>Apart from this, we do not collect personal information ourselves. The third-party services below, which the Games
+  use, may collect information as described in their own policies.</p>""")
+    delete_note = "" if not online else f" To delete an online game account, email us your nickname."
     body = f"""  <article class="policy">
   <h1>Privacy Policy</h1>
   <p class="muted">{st} &middot; Last updated: {e(s['policy_updated'])}</p>
 
   <p>This policy applies to all mobile games published by <strong>{st}</strong> ("we", "us") on Google Play
   (each a "Game"), currently: {names}. It explains what information the Games collect, how it is used and the
-  choices you have. The Games do not ask you to create an account and we do not ask for your name, email or phone number.</p>
+  choices you have. {no_account}</p>
 
   <h2>1. Information stored on your device</h2>
   <p>Your game progress (levels, coins, gems, upgrades, settings such as sound and vibration) is saved on your device.
-  It is not sent to us. Deleting a Game deletes this data, unless you use cloud save (section 3).</p>
+  It is not sent to us. Deleting a Game deletes this data, unless you use cloud save (section 3).{local_note}</p>
 
   <h2>2. Information we collect</h2>
-  <p>We do not run our own servers and do not collect personal information ourselves. The third-party services below,
-  which the Games use, may collect information as described in their own policies.</p>
+  {collected}
 
   <h2>3. Third-party services</h2>
   <ul>
@@ -208,7 +233,7 @@ def privacy(s):
     <li><strong>No ads:</strong> a Game's "No Ads" purchase removes its ad breaks and gives ad rewards instantly, without ads.</li>
     <li><strong>Cloud save:</strong> you can decline the Play Games sign-in, or sign out of Play Games at any time.</li>
     <li><strong>Deletion:</strong> uninstall a Game to delete its local data. To delete cloud-saved data, remove the Game's
-      data from your Google Play Games settings, or contact us.</li>
+      data from your Google Play Games settings, or contact us.{delete_note}</li>
   </ul>
 
   <h2>6. Your rights (GDPR, UK GDPR, CCPA and similar laws)</h2>
@@ -242,6 +267,10 @@ def privacy(s):
 def terms(s):
     names = ", ".join(f'<a href="/{g["slug"]}/">{e(g["name"])}</a>' for g in s["games"])
     st, mail = e(s["studio"]), e(s["support_email"])
+    online = online_names(s)
+    online_terms = "" if not online else (
+        f" In our online games ({online}), progress is stored on our game server, and some opponents and ranking"
+        " entries are computer-controlled players.")
     body = f"""  <article class="policy">
   <h1>Terms of Service</h1>
   <p class="muted">{st} &middot; Last updated: {e(s.get('terms_updated', s['policy_updated']))}</p>
@@ -285,7 +314,7 @@ def terms(s):
   <p>Progress is stored on your device, and in your Google account if you use cloud save. Uninstalling a Game without
   cloud save deletes local progress, and we cannot recover it. We may update a Game at any time, which may change
   features or gameplay, and some updates may be required to keep playing. We may stop offering or supporting a Game; if a
-  Game is discontinued, Virtual Items in it may stop being usable, subject to applicable law.</p>
+  Game is discontinued, Virtual Items in it may stop being usable, subject to applicable law.{online_terms}</p>
 
   <h2>7. Disclaimers</h2>
   <p>The Games are provided "as is" and "as available". To the fullest extent permitted by law, we make no warranties

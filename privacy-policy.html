@@ -36,6 +36,8 @@
            scroll-snap-type: x mandatory; padding-bottom: 8px; }
   .shots img { width: 100%; border-radius: 16px; border: 1px solid var(--line); scroll-snap-align: start; display: block; }
   @media (min-width: 760px) { .shots { grid-auto-columns: calc((100% - 36px) / 4); } }
+  .shots.wide { grid-auto-columns: minmax(260px, 85%); }
+  @media (min-width: 760px) { .shots.wide { grid-auto-columns: calc((100% - 12px) / 2); } }
   .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 0; list-style: none; margin: 0; }
   .features li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
   .features b { display: block; }
@@ -52,19 +54,24 @@
   <header><a href="/"><span class="logo" aria-hidden="true">🍅</span><b>Tomato Games</b></a></header>
   <article class="policy">
   <h1>Privacy Policy</h1>
-  <p class="muted">Tomato Games &middot; Last updated: 12 November 2026</p>
+  <p class="muted">Tomato Games &middot; Last updated: 24 November 2026</p>
 
   <p>This policy applies to all mobile games published by <strong>Tomato Games</strong> ("we", "us") on Google Play
-  (each a "Game"), currently: <a href="/evolution-race/">Evolution Race</a>. It explains what information the Games collect, how it is used and the
-  choices you have. The Games do not ask you to create an account and we do not ask for your name, email or phone number.</p>
+  (each a "Game"), currently: <a href="/evolution-race/">Evolution Race</a>, <a href="/fusion-masters/">Fusion Masters</a>. It explains what information the Games collect, how it is used and the
+  choices you have. Except for our online games (<a href="/fusion-masters/">Fusion Masters</a>), the Games do not ask you to create an account. We never ask for your name, email or phone number.</p>
 
   <h2>1. Information stored on your device</h2>
   <p>Your game progress (levels, coins, gems, upgrades, settings such as sound and vibration) is saved on your device.
-  It is not sent to us. Deleting a Game deletes this data, unless you use cloud save (section 3).</p>
+  It is not sent to us. Deleting a Game deletes this data, unless you use cloud save (section 3). In online games, progress is saved on our game server instead (section 2).</p>
 
   <h2>2. Information we collect</h2>
-  <p>We do not run our own servers and do not collect personal information ourselves. The third-party services below,
-  which the Games use, may collect information as described in their own policies.</p>
+  <p>Our online games (<a href="/fusion-masters/">Fusion Masters</a>) use our own game server, hosted on Google Cloud. When you play one, the
+  server stores the nickname you choose, your game progress (level, currencies, cards, deck, campaign progress and
+  achievements) and your arena results. Your nickname, level, trophies and deck are shown to other players in rankings and
+  battles. The server keeps short technical logs of requests (nickname and the action), and your IP address is used to
+  connect you to it. We keep this data while the game is offered. To delete your account, email us your nickname.</p>
+  <p>Apart from this, we do not collect personal information ourselves. The third-party services below, which the Games
+  use, may collect information as described in their own policies.</p>
 
   <h2>3. Third-party services</h2>
   <ul>
@@ -110,7 +117,7 @@
     <li><strong>No ads:</strong> a Game's "No Ads" purchase removes its ad breaks and gives ad rewards instantly, without ads.</li>
     <li><strong>Cloud save:</strong> you can decline the Play Games sign-in, or sign out of Play Games at any time.</li>
     <li><strong>Deletion:</strong> uninstall a Game to delete its local data. To delete cloud-saved data, remove the Game's
-      data from your Google Play Games settings, or contact us.</li>
+      data from your Google Play Games settings, or contact us. To delete an online game account, email us your nickname.</li>
   </ul>
 
   <h2>6. Your rights (GDPR, UK GDPR, CCPA and similar laws)</h2>

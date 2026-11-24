@@ -20,6 +20,7 @@ This repository is the **studio website**, https://tomatotomatogames.com. It's b
 **Website (5 minutes)**
 1. Add an entry to `games` in `_src/studio.json` (slug, name, package, status, texts, features, screenshot captions).
 2. Put `icon.png` (512×512), `banner.png` (1024×500) and `shots/1.jpg…N.jpg` (540×960) in `_src/games/<slug>/`.
+   Optional: `"online": true` for a game that keeps accounts on our own server (the privacy policy and terms then say so), `"shots_wide": true` for landscape screenshots, `"credit"` for a line under the features.
 3. Run `python _src/build.py`, then commit and push. The privacy policy and the home page pick up the new game by themselves.
 4. When the game is public on Google Play, set its `"status"` to `"live"`. The page then shows a "Get it on Google Play" link.
 

@@ -5,7 +5,7 @@
   "support_email": "support@tomatotomatogames.com",
   "tagline": "Quick, colourful mobile games you can play with one hand.",
   "admob_publisher_ids": ["pub-2119263671751122"],
-  "policy_updated": "12 November 2026",
+  "policy_updated": "24 November 2026",
 
   "games": [
     {
@@ -30,6 +30,30 @@
         "Grab the loot: coins, gems and genes",
         "Upgrade and evolve"
       ]
+    },
+    {
+      "slug": "fusion-masters",
+      "name": "Fusion Masters",
+      "package": "com.fm.fusionmasters",
+      "status": "testing",
+      "online": true,
+      "shots_wide": true,
+      "short": "Collect, fuse and battle over 120 monsters.",
+      "description": "Pick a starter element, build your deck and fuse your monsters into stronger forms. Battle through the campaign, then take your deck to the Arena and climb the weekly ranking.",
+      "features": [
+        ["🧪 Fuse monsters", "Over 120 monsters to collect, level up and fuse into new forms."],
+        ["🔥 Four elements", "Fire, water, nature and dark, each strong against another."],
+        ["🗺️ Campaign", "Stages on Normal, Hard and Extreme difficulty."],
+        ["🏆 Arena", "Battle other players' decks and climb the weekly ranking."]
+      ],
+      "screenshots": [
+        "Card battles",
+        "Deck, campaign, Arena and shop",
+        "Campaign map",
+        "Stages on Normal, Hard and Extreme",
+        "Player profile"
+      ],
+      "credit": "Fusion Masters was first made by WIP Games in 2016. Tomato Games brings it back."
     }
   ]
 }

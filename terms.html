@@ -36,6 +36,8 @@
            scroll-snap-type: x mandatory; padding-bottom: 8px; }
   .shots img { width: 100%; border-radius: 16px; border: 1px solid var(--line); scroll-snap-align: start; display: block; }
   @media (min-width: 760px) { .shots { grid-auto-columns: calc((100% - 36px) / 4); } }
+  .shots.wide { grid-auto-columns: minmax(260px, 85%); }
+  @media (min-width: 760px) { .shots.wide { grid-auto-columns: calc((100% - 12px) / 2); } }
   .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 0; list-style: none; margin: 0; }
   .features li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
   .features b { display: block; }
@@ -52,10 +54,10 @@
   <header><a href="/"><span class="logo" aria-hidden="true">🍅</span><b>Tomato Games</b></a></header>
   <article class="policy">
   <h1>Terms of Service</h1>
-  <p class="muted">Tomato Games &middot; Last updated: 12 November 2026</p>
+  <p class="muted">Tomato Games &middot; Last updated: 24 November 2026</p>
 
   <p>These terms apply to all mobile games published by <strong>Tomato Games</strong> ("we", "us") on Google Play (each a
-  "Game"), currently: <a href="/evolution-race/">Evolution Race</a>. By downloading or playing a Game you agree to these terms. If you do not agree, please do
+  "Game"), currently: <a href="/evolution-race/">Evolution Race</a>, <a href="/fusion-masters/">Fusion Masters</a>. By downloading or playing a Game you agree to these terms. If you do not agree, please do
   not use the Game. Our <a href="/privacy-policy.html">Privacy Policy</a> explains how information is handled.</p>
 
   <h2>1. Your licence</h2>
@@ -93,7 +95,7 @@
   <p>Progress is stored on your device, and in your Google account if you use cloud save. Uninstalling a Game without
   cloud save deletes local progress, and we cannot recover it. We may update a Game at any time, which may change
   features or gameplay, and some updates may be required to keep playing. We may stop offering or supporting a Game; if a
-  Game is discontinued, Virtual Items in it may stop being usable, subject to applicable law.</p>
+  Game is discontinued, Virtual Items in it may stop being usable, subject to applicable law. In our online games (<a href="/fusion-masters/">Fusion Masters</a>), progress is stored on our game server, and some opponents and ranking entries are computer-controlled players.</p>
 
   <h2>7. Disclaimers</h2>
   <p>The Games are provided "as is" and "as available". To the fullest extent permitted by law, we make no warranties
