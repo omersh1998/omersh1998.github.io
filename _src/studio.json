@@ -3,7 +3,7 @@
   "country": "Israel",
   "domain": "tomatotomatogames.com",
   "support_email": "support@tomatotomatogames.com",
-  "tagline": "Quick, colourful mobile games you can play with one hand.",
+  "tagline": "Colourful mobile games from a small indie studio.",
   "admob_publisher_ids": ["pub-2119263671751122"],
   "favicon_game": "evolution-race",
   "policy_updated": "24 November 2026",
@@ -30,8 +30,7 @@
         "Campaign map",
         "Stages on Normal, Hard and Extreme",
         "Player profile"
-      ],
-      "credit": "Fusion Masters was first made by WIP Games in 2016. Tomato Games brings it back."
+      ]
     },
     {
       "slug": "evolution-race",
